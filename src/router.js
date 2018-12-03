@@ -1,16 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Login from './views/Login.vue'
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
-    {
-      path: '/',
-      name: 'login',
-      component: Login
-    },
     {
       path: '/register',
       name: 'register',
@@ -20,9 +14,34 @@ export default new Router({
       component: () => import(/* webpackChunkName: "register" */ './views/Register.vue')
     },
     {
-      path: '/home',
+      path: '/',
       name: 'home',
-      component: () => import(/* webpackChunkName: "home" */ './views/Home.vue')
+      component: () => import(/* webpackChunkName: "home" */ './views/Home.vue'),
+      children: [
+        {
+          path: 'index',
+          component: () => import(/* webpackChunkName: "home" */ './views/index.vue')
+        },
+        {
+          path: 'about',
+          component: () => import(/* webpackChunkName: "home" */ './views/About.vue')
+        },
+        {
+          path: 'login',
+          name: 'login',
+          component: () => import(/* webpackChunkName: "home" */ './views/Login.vue')
+        },
+        {
+          path: 'message',
+          name: 'message',
+          component: () => import(/* webpackChunkName: "home" */ './views/Message.vue')
+        },
+        {
+          path: 'management',
+          name: 'management',
+          component: () => import(/* webpackChunkName: "home" */ './views/Management.vue')
+        }
+      ]
     }
   ]
 })

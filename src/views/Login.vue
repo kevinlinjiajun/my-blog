@@ -36,17 +36,25 @@ export default {
   methods: {
     onSubmit () {
       this.$store.commit('set_name', this.loginForm.usernumber)
+      // this.$message({
+      //   message: '登录成功，即将跳至后台管理...',
+      //   type: 'success',
+      //   duration: 1000,
+      //   onClose: () => {
+      //     this.$router.push('/management')
+      //   }
+      // })
       this.axios.post(urls.login, this.qs.stringify(this.loginForm)).then(response => {
         let data = response.data
         console.log(data)
         if (data.code === 0) {
           window.localStorage.setItem('token', data.payload.token)
           this.$message({
-            message: '登录成功，即将跳至首页...',
+            message: '登录成功，即将跳至后台管理...',
             type: 'success',
             duration: 2000,
             onClose: () => {
-              this.$router.push('/home')
+              this.$router.push('/management')
             }
           })
         }
