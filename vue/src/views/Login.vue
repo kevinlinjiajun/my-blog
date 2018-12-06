@@ -1,7 +1,7 @@
 <template>
   <div class="login">
     <h1>LOGIN</h1>
-    <img alt="Vue logo" src="../assets/images/logo.png">
+    <img alt="Vue logo" src="../../static/images/logo.png">
     <div class="login_form">
       <el-form :model="loginForm" label-width="80px">
         <el-form-item label="账号">
@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import { urls } from './../assets/js/urls'
+// import { urls } from './../assets/js/urls'
 export default {
   name: 'login',
   data () {
@@ -36,31 +36,31 @@ export default {
   methods: {
     onSubmit () {
       this.$store.commit('set_name', this.loginForm.usernumber)
-      // this.$message({
-      //   message: '登录成功，即将跳至后台管理...',
-      //   type: 'success',
-      //   duration: 1000,
-      //   onClose: () => {
-      //     this.$router.push('/management')
-      //   }
-      // })
-      this.axios.post(urls.login, this.qs.stringify(this.loginForm)).then(response => {
-        let data = response.data
-        console.log(data)
-        if (data.code === 0) {
-          window.localStorage.setItem('token', data.payload.token)
-          this.$message({
-            message: '登录成功，即将跳至后台管理...',
-            type: 'success',
-            duration: 2000,
-            onClose: () => {
-              this.$router.push('/management')
-            }
-          })
+      this.$message({
+        message: '登录成功，即将跳至后台管理...',
+        type: 'success',
+        duration: 1000,
+        onClose: () => {
+          this.$router.push('/management')
         }
-      }).catch(response => {
-        console.log(response)
       })
+      // this.axios.post(urls.login, this.qs.stringify(this.loginForm)).then(response => {
+      //   let data = response.data
+      //   console.log(data)
+      //   if (data.code === 0) {
+      //     window.localStorage.setItem('token', data.payload.token)
+      //     this.$message({
+      //       message: '登录成功，即将跳至后台管理...',
+      //       type: 'success',
+      //       duration: 2000,
+      //       onClose: () => {
+      //         this.$router.push('/management')
+      //       }
+      //     })
+      //   }
+      // }).catch(response => {
+      //   console.log(response)
+      // })
     }
   }
 }

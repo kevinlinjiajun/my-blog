@@ -39,7 +39,7 @@ export default new Router({
         {
           path: 'management',
           name: 'management',
-          component: () => import(/* webpackChunkName: "home" */ './views/Management.vue')
+          component: () => import(/* webpackChunkName: "home" */ './views/management/Management.vue')
         }
       ]
     }

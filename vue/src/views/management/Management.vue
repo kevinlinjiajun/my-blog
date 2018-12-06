@@ -24,7 +24,7 @@
             <i class="el-icon-menu"></i>
             <span slot="title">导航二</span>
           </el-menu-item>
-          <el-menu-item index="3" disabled>
+          <el-menu-item index="3">
             <i class="el-icon-document"></i>
             <span slot="title">导航三</span>
           </el-menu-item>

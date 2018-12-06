@@ -20,7 +20,7 @@
                 This is my first bolg!This is my first bolg!</p>
             </el-col>
             <el-col :span="6">
-                <img src="@/assets/images/logo.png">
+                <img src="../../static/images/logo.png">
             </el-col>
           </el-card>
         </div>
@@ -37,7 +37,7 @@
                 This is my first bolg!This is my first bolg!</p>
             </el-col>
             <el-col :span="6">
-                <img src="@/assets/images/logo.png">
+                <img src="../../static/images/logo.png">
             </el-col>
           </el-card>
           <el-card class="content_item">
@@ -52,7 +52,7 @@
                 This is my first bolg!This is my first bolg!</p>
             </el-col>
             <el-col :span="6">
-                <img src="@/assets/images/logo.png">
+                <img src="../../static/images/logo.png">
             </el-col>
           </el-card>
           <el-card class="content_item">
@@ -67,7 +67,7 @@
                 This is my first bolg!This is my first bolg!</p>
             </el-col>
             <el-col :span="6">
-                <img src="@/assets/images/logo.png">
+                <img src="../../static/images/logo.png">
             </el-col>
           </el-card>
         </div>

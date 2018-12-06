@@ -2,7 +2,7 @@
   <div class="register">
     <el-row align="middle">
       <el-col :span="12">
-        <img alt="Vue logo" src="../assets/images/logo.png">
+        <img alt="Vue logo" src="../../static/images/logo.png">
       </el-col>
       <el-col :span="12">
         <h1>REGISTER</h1>
