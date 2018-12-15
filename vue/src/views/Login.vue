@@ -22,7 +22,6 @@
 </template>
 
 <script>
-// import { urls } from './../assets/js/urls'
 export default {
   name: 'login',
   data () {

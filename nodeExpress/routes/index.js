@@ -28,7 +28,7 @@ router.post('/login', (req, res) => {
     let mdPassword = md5.update(req.body.password).digest('hex');
     let params = [req.body.usernumber, mdPassword];
     let sql = 'SELECT * from user WHERE usernumber="'+ req.body.usernumber + '" AND password="'+ mdPassword + '"';
-    db.query(sql, params, function(err, result){
+    db.query(sql, params, (err, result) => {
         if (err) {
             res.status(500).json({msg: err.message, code: 1, payload: ''});
         }else if (result.length === 0) {
@@ -41,7 +41,7 @@ router.post('/login', (req, res) => {
 });
 router.get('/listUsers', (req, res) => {
     let selectSql = 'select * from user';
-    db.query(selectSql, [], function(err, result){
+    db.query(selectSql, [], (err, result) => {
         if (err) {
             res.json({msg: err.message, code: 1, payload: ''});
         }else{
@@ -54,7 +54,7 @@ router.post('/addUsers', (req, res) => {
     let mdPassword = md5.update(req.body.password).digest('hex');
     let params = [req.body.usernumber, mdPassword, req.body.name, req.body.age, req.body.birthday, req.body.profession, req.body.address];
     let addSql = 'INSERT INTO user(id,usernumber,password,name,age,birthday,profession,address) VALUES(0,?,?,?,?,?,?,?)';
-    db.query(addSql, params, function(err, result){
+    db.query(addSql, params, (err, result) => {
         if (err) {
             console.log(err, result);
             res.json({msg: err.message, code: 1, payload: ''});
@@ -66,7 +66,7 @@ router.post('/addUsers', (req, res) => {
 router.delete('/deleteUsers', (req, res) => {
     if (req.query.id) {
         let deleteSql = 'DELETE FROM user WHERE id=' + req.query.id;
-        db.query(deleteSql, function(err, result){
+        db.query(deleteSql, (err, result) => {
             console.log(result);
             if (err) {
                 res.json({msg: err.message, code: 1, payload: ''});
@@ -80,6 +80,54 @@ router.delete('/deleteUsers', (req, res) => {
         res.json({msg: 'Unable to find "id" field', code: 1, payload: ''});
     }
 });
+
+router.route('/blogClass').get((req, res, next) => {
+    let getClassSql = 'select * from management_blog_class';
+    db.query(getClassSql, (err, result) => {
+        if (err) {
+            res.json({msg: err.message, code: 1, payload: ''});
+        }else if (result.fieldCount === 0) {
+            res.json({msg: 'Unable to query this field', code: 1, payload: ''});
+        }else {
+            res.json({msg: '', code: 0, payload: result});
+        }
+    })
+}).post((req, res, next) => {
+    let params = [req.body.name];
+    let addClassSql = 'INSERT INTO management_blog_class(id, name) VALUES(0,?)';
+    db.query(addClassSql, params, (err, result) => {
+        if (err) {
+            res.json({msg: err.message, code: 1, payload: ''});
+        }else{
+            console.log(result);
+            res.json({msg: 'add success', code: 0, payload: {id: result.insertId}});
+        }
+    })
+}).delete((req, res, next) => {
+    let deleteClassSql = 'DELETE FROM management_blog_class WHERE id=' + parseInt(req.query.id);
+    db.query(deleteClassSql, (err, result) => {
+        console.log(err, result);
+        if (err) {
+            res.json({msg: err.message, code: 1, payload: ''});
+        }else{
+            res.json({msg: '', code: 0, payload: 'delete success'});
+        }
+    })
+})
+
+router.post('/addBlog', (req, res, next) => {
+    let params = [req.body.title, req.body.class, req.body.text];
+    console.log(params);
+    let addBlogSql = 'INSERT INTO management_blog_class(id, title, class, text) VALUES(0,?,?,?)';
+    // db.query(addBlogSql, params, (err, result) => {
+    //     if (err) {
+    //         res.json({msg: err.message, code: 1, payload: ''});
+    //     }else{
+    //         console.log(result);
+    //         res.json({msg: '', code: 0, payload: 'add success'});
+    //     }
+    // })
+})
 
 router.get('/register', (req, res) => {
     res.send('Register Page');

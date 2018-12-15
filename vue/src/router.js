@@ -20,26 +20,43 @@ export default new Router({
       children: [
         {
           path: 'index',
-          component: () => import(/* webpackChunkName: "home" */ './views/index.vue')
+          component: () => import(/* webpackChunkName: "index" */ './views/index.vue')
         },
         {
           path: 'about',
-          component: () => import(/* webpackChunkName: "home" */ './views/About.vue')
+          component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
         },
         {
           path: 'login',
           name: 'login',
-          component: () => import(/* webpackChunkName: "home" */ './views/Login.vue')
+          component: () => import(/* webpackChunkName: "login" */ './views/Login.vue')
         },
         {
           path: 'message',
           name: 'message',
-          component: () => import(/* webpackChunkName: "home" */ './views/Message.vue')
+          component: () => import(/* webpackChunkName: "message" */ './views/Message.vue')
         },
         {
           path: 'management',
           name: 'management',
-          component: () => import(/* webpackChunkName: "home" */ './views/management/Management.vue')
+          component: () => import(/* webpackChunkName: "management" */ './views/management/Management.vue'),
+          children: [
+            {
+              path: 'classManagement',
+              name: 'classManagement',
+              component: () => import(/* webpackChunkName: "classManagement" */ './views/management/ClassManagement.vue')
+            },
+            {
+              path: 'editBlog',
+              name: 'editBlog',
+              component: () => import(/* webpackChunkName: "editBlog" */ './views/management/EditBlog.vue')
+            },
+            {
+              path: 'blogList',
+              name: 'blogList',
+              component: () => import(/* webpackChunkName: "blogList" */ './views/management/blogList.vue')
+            }
+          ]
         }
       ]
     }
